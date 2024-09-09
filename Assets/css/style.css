@@ -1,24 +1,21 @@
-@import url(https://fonts.googleapis.com/css?family=Montserrat);
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
 
 html, body {
-    overflow: hidden;
     margin: 0;
     padding: 0;
     height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto; /* Allow vertical scroll on mobile */
 }
 
 .background {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
-    overflow: hidden;
-    will-change: transform;
-    backface-visibility: hidden;
     height: 130vh;
-    position: fixed;
+    position: relative; /* Use relative for better scrolling on mobile */
     width: 100%;
-    /* transform: translateY(30vh); */
-    transition: all 1.2s cubic-bezier(0.22, 0.44, 0, 1);
+    transition: all 0.6s ease-out;
 }
 
 .background:before {
@@ -33,32 +30,18 @@ html, body {
     background-color: rgba(0, 0, 0, .3);
 }
 
-.background:first-child {
-    background-image: url(../img/IMG_4689.JPG);
-    transform: translateY(-15vh);
-}
-
-.background:first-child .content-wrapper {
-    transform: translateY(15vh);
-}
-
-.background:nth-child(2) {
-    background-image: url(../img/IMG_4663.JPG);
-}
-
-.background:nth-child(3) {
-    background-image: url(../img/FFT_1753.JPG);
-}
-
 .background:nth-child(1) {
+    background-image: url(../img/IMG_4689.JPG);
     z-index: 3;
 }
 
 .background:nth-child(2) {
+    background-image: url(../img/IMG_4663.JPG);
     z-index: 2;
 }
 
 .background:nth-child(3) {
+    background-image: url(../img/FFT_1753.JPG);
     z-index: 1;
 }
 
@@ -68,14 +51,12 @@ html, body {
     justify-content: center;
     align-items: center;
     text-align: center;
-    flex-flow: column nowrap;
+    flex-direction: column;
     color: #fff;
-    font-family: Montserrat;
+    font-family: 'Montserrat', sans-serif;
     text-transform: uppercase;
     transform: translateY(40vh);
-    will-change: transform;
-    backface-visibility: hidden;
-    transition: all 1.7s cubic-bezier(0.22, 0.44, 0, 1);
+    transition: all 1.2s ease-out;
 }
 
 .content-title {
@@ -83,6 +64,21 @@ html, body {
     line-height: 1.4;
 }
 
+.content-subtitle {
+    font-size: 4vh;
+}
+
+/* Adjust for mobile screens */
+@media (max-width: 768px) {
+    .content-title {
+        font-size: 8vh;
+    }
+    .content-subtitle {
+        font-size: 3vh;
+    }
+}
+
+/* Scrolling classes */
 .background.up-scroll {
     transform: translate3d(0, -15vh, 0);
 }
@@ -91,16 +87,10 @@ html, body {
     transform: translateY(15vh);
 }
 
-.background.up-scroll + .background {
-    transform: translate3d(0, 30vh, 0);
-}
-
-/* .background.up-scroll + .background .content-wrapper {
-    transform: translateY(30vh);
-} */
-
 .background.down-scroll {
     transform: translate3d(0, -130vh, 0);
 }
 
-
+.background.down-scroll + .background {
+    transform: translate3d(0, 30vh, 0);
+}
